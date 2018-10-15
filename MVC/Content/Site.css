@@ -1,0 +1,136 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #343a40;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+label {
+    color: white;
+}
+
+.jumbotron {
+    background-color: #01a3a4;
+}
+
+.jumbotron > div > a {
+    color: #ECF0F1;
+    font-size: 16px;
+}
+
+.jumbotron > div > a:hover {
+    color: #DC3023;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+dt, dd {
+    font-size: 16px;
+}
+
+h2 {
+    color: white;
+}
+
+th, td{
+    color: white;
+}
+
+p, p > a{
+    color: white;
+}
+
+.form-horizontal {
+    display: table;
+    margin: auto;
+}
+
+.form-control{
+    height: 42px;
+}
+
+.form-control,
+.control-label{
+    font-size: 16px;
+}
+
+.input-group{
+    margin: 0px auto;
+}
+
+.fa-2x{
+    margin-right: 5px;
+}
+
+.fa-envelope{
+    width: 20px;
+}
+
+.btn{
+    font-size: 18px;
+}
+
+.alert-danger {
+    border-color: red;
+    background: #e74c3c;
+    width: 280px;
+    color: white;
+}
+
+.alert-success {
+    border-color: green;
+    background: #2ecc71;
+    width: 280px;
+    color: white;
+}
+
+.alert-dismissible .close{
+    color: black;
+}
+
+.text-danger{
+    color: red;
+}
+
+.error-msg{
+    display: none;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    background-color: #ecf0f1;
+    color: #000000;
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+    .form-control{
+        display: inline !important;
+    }
+
+    .alert-danger,
+    .alert-success{
+        margin: 0px auto;
+    }
+
+}
