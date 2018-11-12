@@ -14,15 +14,15 @@
         <div class="form-horizontal">
 
             @Html.ValidationSummary(true)
-         
-            @if(TempData["status"] != null)
+
+            @if (TempData["status"] != null)
             {
                 <div id="summary-success">
                     <div class="alert alert-success alert-dismissable">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <span>Vos demandes de modifications ont bien été prises en compte.</span>
                     </div>
-                </div>  
+                </div>
             }
 
             <div class="form-group">
@@ -32,30 +32,28 @@
                         <i class="fa fa-user fa-2x"></i>
                     </span>
                     @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "form-control" } })
-                    <div class="error-msg">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-error" })
-                    </div>
+                </div>
+                <div class="error-msg">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-error" })
                 </div>
             </div>
-           
-                
+
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Lastname, htmlAttributes: new { @class = "control-label" })
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">
                         <i class="fa fa-user fa-2x"></i>
                     </span>
-
                     @Html.EditorFor(model => model.Lastname, new { htmlAttributes = new { @class = "form-control" } })
-                    <div class="error-msg">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        @Html.ValidationMessageFor(model => model.Lastname, "", new { @class = "text-error" })
-                    </div>
-
+                </div>
+                <div class="error-msg">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    @Html.ValidationMessageFor(model => model.Lastname, "", new { @class = "text-error" })
                 </div>
             </div>
-           
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
                 <div class="input-group">
@@ -63,13 +61,13 @@
                         <i class="fa fa-envelope fa-2x"></i>
                     </span>
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    <div class="error-msg">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-error" })
-                    </div>
+                </div>
+                <div class="error-msg">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-error" })
                 </div>
             </div>
-               
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using MVC.Models;
 using MVC.Helpers;
+using MVC.Grids;
 
 namespace MVC.Controllers
 {
@@ -17,8 +18,40 @@ namespace MVC.Controllers
         [HttpGet]
         public ActionResult Overview()
         {
-            var lstUser = Utils.GetValueFromSessionOrSetIt(HttpContext);
-            return View(lstUser);
+            //var lstUser = Utils.GetValueFromSessionOrSetIt(HttpContext);
+            //return View(lstUser);
+            return View(new List<UserModel>());
+
+        }
+
+        public JsonResult GetOverview(GridDefaultSettings grid)
+        {
+            try
+            {
+                var lst = Utils.GetValueFromSessionOrSetIt(HttpContext).ToList();
+                if (!string.IsNullOrEmpty(grid.Search))
+                    lst = lst.FindAll(x => x.Firstname.Contains(grid.Search) || x.Lastname.Contains(grid.Search) || x.Email.Contains(grid.Search)).ToList();
+                lst = Order(grid.SortColumn, grid.SortOrder, lst).ToList();
+
+                var totalRecords = lst.Count;
+                var totalPages = (int)Math.Ceiling(totalRecords / (float)grid.Length);
+                lst = lst.Skip(grid.Start).Take(grid.Length).ToList();
+                var jsonData = new
+                {
+                    draw = grid.Draw,
+                    recordsTotal = totalRecords,
+                    recordsFiltered = totalRecords,
+                    start = grid.Start,
+                    length = totalPages,
+                    data = Utils.GetUserDatatablesContent(lst, Url.Action("Edit", "User"))
+                };
+
+                return Json(jsonData, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         [HttpGet]
@@ -113,6 +146,31 @@ namespace MVC.Controllers
                 return RedirectToAction("Overview");
             }
             return View(user);
+        }
+
+        internal List<UserModel> Order(int column, string order, List<UserModel> lst)
+        {
+            switch (column)
+            {
+                case 0:
+                    return order != "desc"
+                        ? lst.OrderBy(x => x.Id).ToList()
+                        : lst.OrderByDescending(x => x.Id).ToList();
+                case 1:
+                    return order != "desc"
+                        ? lst.OrderBy(x => x.Firstname).ToList()
+                        : lst.OrderByDescending(x => x.Firstname).ToList();
+                case 2:
+                    return order != "desc"
+                        ? lst.OrderBy(x => x.Lastname).ToList()
+                        : lst.OrderByDescending(x => x.Lastname).ToList();
+                case 3:
+                    return order != "desc"
+                        ? lst.OrderBy(x => x.Email).ToList()
+                        : lst.OrderByDescending(x => x.Email).ToList();
+                default:
+                    return lst;
+            }
         }
 
     }

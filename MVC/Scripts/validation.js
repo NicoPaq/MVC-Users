@@ -1,12 +1,15 @@
 ﻿$(document).ready(function () {
 
+    $('#dataGrid').DataTable();
+
     $('form').submit(function (event) {
 
-        if ($('#summary-success')) {
-           $('#summary-success').empty();
+        if ($('#summary-success') || $('.error-msg span')) {
+            $('#summary-success').empty();
+            $('.error-msg span').empty();
         }
 
-        //event.preventDefault(); // Avoid Page Reload
+        //event.preventDefault(); // Avoid Page Reload // Not needed in this case.
         alert("Form Submitted :)");
 
         // Tip pour récupérer les données de notre formulaire.
